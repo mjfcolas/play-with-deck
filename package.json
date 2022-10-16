@@ -5,24 +5,32 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
-    "/dist"
+    "/dist/index.js",
+    "/dist/index.d.ts"
   ],
   "scripts": {
     "test": "jest --config ./jest.config.json",
-    "build": "tsc"
+    "build": "tsc && node build.js"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/mjfcolas/play-with-deck"
   },
-  "keywords": [],
+  "keywords": [
+    "playing cards",
+    "deck manager",
+    "deck",
+    "table",
+    "playing table"
+  ],
   "author": "",
   "license": "GPL-3.0",
   "devDependencies": {
     "@babel/preset-env": "^7.16.8",
-    "@types/jest": "^27.4.0",
-    "jest": "^27.4.7",
     "@babel/preset-typescript": "^7.16.7",
+    "@types/jest": "^27.4.0",
+    "esbuild": "^0.15.11",
+    "jest": "^27.4.7",
     "typescript": "^4.5.5"
   }
 }
