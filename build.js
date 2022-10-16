@@ -5,6 +5,6 @@ build({
     entryPoints: ['src/index.ts'],
     outdir: 'dist',
     bundle: true,
-    format: "esm",
+    format: "cjs",
     external: Object.keys(dependencies | {}).concat(Object.keys(peerDependencies | {}))
 }).then()
