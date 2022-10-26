@@ -1,6 +1,6 @@
 import {Card} from "./card";
 import {DummyCard} from "./dummy/dummy-card";
-import {Pile} from "./pile";
+import {DefaultPile} from "./default-pile";
 import * as mockedRandomIntFromInterval from "../utils/random";
 
 describe(`Pile`, () => {
@@ -13,7 +13,7 @@ describe(`Pile`, () => {
         const mockRandom = jest.spyOn(mockedRandomIntFromInterval, 'randomIntFromInterval')
         mockRandom.mockReturnValue(5);
 
-        const pile = new Pile(cards);
+        const pile = new DefaultPile(cards);
         const cutCards: Card[] = pile.cut();
         expect(cutCards.length).toEqual(cards.length)
 
@@ -40,7 +40,7 @@ describe(`Pile`, () => {
     when cutting pile,
     then cut cards is equals to not cut cards`, () => {
         const smallDeck = [new DummyCard('1', 1)];
-        const pile = new Pile(smallDeck);
+        const pile = new DefaultPile(smallDeck);
         const cutCards: Card[] = pile.cut();
         expect(cutCards).toEqual(smallDeck)
     })
@@ -48,7 +48,7 @@ describe(`Pile`, () => {
     test(`Given an initialized pile,
     when shuffling pile,
     then order in cards of pile is completely broken`, () => {
-        const pile = new Pile(cards);
+        const pile = new DefaultPile(cards);
         const shuffledCards: Card[] = pile.shuffle();
 
         expect(shuffledCards.length).toEqual(cards.length)
@@ -60,7 +60,7 @@ describe(`Pile`, () => {
     when sorting pile,
     then cards of pile are ordered according to sorting function`, () => {
         const shuffledCards: Card[] = [...cards].sort(() => 0.5 - Math.random())
-        const pile = new Pile(shuffledCards);
+        const pile = new DefaultPile(shuffledCards);
         const sortedCards = pile.sort((a: DummyCard, b: DummyCard) => a.value - b.value)
 
         expect(sortedCards).toEqual(cards);
@@ -70,14 +70,14 @@ describe(`Pile`, () => {
     test(`Given an initialized pile,
     when listing cards of pile,
     then cards in pile are returned`, () => {
-        const pile = new Pile(cards);
+        const pile = new DefaultPile(cards);
         expect(pile.list()).toEqual(cards)
     })
 
     test(`Given an initialized pile and a number of cards, 
     when drawing cards, 
     then cards are returned and removed from top of the pile`, () => {
-        const pile = new Pile(cards);
+        const pile = new DefaultPile(cards);
         const drawnCards: Card[] = pile.draw(3);
         const expectedDrawnCards: Card[] = [
             new DummyCard('7', 7),
@@ -102,7 +102,7 @@ describe(`Pile`, () => {
     test(`Given an initialized pile, 
     when drawing all cards, 
     then cards are returned and pile does not have cards anymore`, () => {
-        const pile = new Pile(cards);
+        const pile = new DefaultPile(cards);
         const drawnCards: Card[] = pile.drawAll();
         const expectedDrawnCards: Card[] = [
             new DummyCard('0', 0),
@@ -127,7 +127,7 @@ describe(`Pile`, () => {
     test(`Given an initialized pile and a card identifier, 
     when picking a card, 
     then picked card is returned and removed from pile`, () => {
-        const pile = new Pile(cards);
+        const pile = new DefaultPile(cards);
         const pickedCard: Card = pile.pick('8');
         const expectedPickedCard: Card = new DummyCard('8', 8);
         expect(pickedCard).toEqual(expectedPickedCard);
@@ -150,7 +150,7 @@ describe(`Pile`, () => {
     test(`Given an initialized pile,
     when adding cards to pile,
     then resulting pile contains new cards`, () => {
-        const pile = new Pile(cards);
+        const pile = new DefaultPile(cards);
 
         const cardsToAdd: Card[] = [
             new DummyCard('10', 10),
