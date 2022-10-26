@@ -1,6 +1,6 @@
 {
   "name": "play-with-deck",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "A deck manager that can be used as a base for card games",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
